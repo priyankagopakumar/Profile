@@ -14,6 +14,7 @@ class MockData {
     static var education: [XEducation] = []
     static var workEx: [XWorkEx] = []
     static var pictures: [XPictures] = []
+    static var interests: [String] = ["iOS Application Development", "Research and Development", ""]
     
     static func createMockSkills() {
         MockData.skills = []
@@ -34,8 +35,8 @@ class MockData {
     
     static func createMockEducation() {
         MockData.education = []
-        MockData.education.append(XEducation(institution: "Monash University", location: "Melbourne, Australia", years: "2015-2017", degree: "Master of Information Technology", major: "Mobile Application Development", projects: [MockData.projects[2]], gpa: "3.4", desc: "Major project in iOS. Web application development.", image: "stockImage"))
-        MockData.education.append(XEducation(institution: "M. S. Ramaiah Institute of Technology", location: "Bangalore, India", years: "2010-2014", degree: "Bachelor of Engineering", major: "Medical Electronics", projects: [MockData.projects[3]], gpa: "9.34", desc: "Work in 8 semesters.", image: "stockImage"))
+        MockData.education.append(XEducation(institution: "Monash University", location: "Melbourne, Australia", years: "2015-2017", degree: "Master of Information Technology", major: "Mobile Application Development", projects: [MockData.projects[2]], gpa: "3.4", desc: "Major project in iOS. Web application development.", image: "monash"))
+        MockData.education.append(XEducation(institution: "M. S. Ramaiah Institute of Technology", location: "Bangalore, India", years: "2010-2014", degree: "Bachelor of Engineering", major: "Medical Electronics", projects: [MockData.projects[3]], gpa: "9.34", desc: "Work in 8 semesters.", image: "ramaiah"))
     }
     
     static func createWorkEx() {

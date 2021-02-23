@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 open class CardView: UIView {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -31,7 +32,7 @@ open class CardView: UIView {
         let nib = UINib(nibName: "StandardCardView", bundle: bundle)
         nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
-        contentView.layer.cornerRadius = 10
+        //contentView.layer.cornerRadius = 10
         autoresizingMask = [
             UIView.AutoresizingMask.flexibleWidth,
             UIView.AutoresizingMask.flexibleHeight
@@ -44,7 +45,7 @@ open class CardView: UIView {
         let nib = UINib(nibName: "StandardCardView", bundle: bundle)
         nib.instantiate(withOwner: self, options: nil)
         contentView.frame = frame
-        contentView.layer.cornerRadius = 10
+        //contentView.layer.cornerRadius = 10
         addSubview(contentView)
     }
     
@@ -52,6 +53,7 @@ open class CardView: UIView {
         self.roleLabel.text = role
         self.companyLabel.text = company
         self.yearsLabel.text = years
+        self.yearsLabel.numberOfLines = 3
         self.descLabel.text = desc
         self.imageView.image = UIImage(named: image)
     }

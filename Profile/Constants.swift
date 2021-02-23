@@ -16,6 +16,6 @@ struct Constants {
         static let mobile = "650-996-2038"
         static let email = "priyankg2412@gmail.com"
         static let address = "Mountain View, CA"
-        static let linkedIn = "priyanka-gopakumar"
+        static let linkedIn = "https://www.linkedin.com/in/priyanka-gopakumar/"
     }
 }
