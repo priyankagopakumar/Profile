@@ -7,29 +7,29 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     //@IBOutlet weak var skillsCollectionView: UICollectionView!
     @IBOutlet weak var workExScrollView: UIScrollView!
     @IBOutlet weak var workExPageControl: UIPageControl!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var educationTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /*
-         
-         appntTableView.delegate = self
-         appntTableView.dataSource = self
          skillsCollectionView.delegate = self
          skillsCollectionView.dataSource = self
-         
          */
         MockData.createAllMockData()
+        educationTableView.delegate = self
+        educationTableView.dataSource = self
         workExScrollView.delegate = self
         workExPageControl.numberOfPages = MockData.workEx.count
         setupProfileView()
         setupWorkExPages()
+
     }
     
     func setupProfileView() {
@@ -50,7 +50,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         workExScrollView.frame.size.width = view.frame.width - 2*margin
         workExScrollView.contentSize = CGSize(width: workExScrollView.frame.width * CGFloat(MockData.workEx.count), height: workExScrollView.frame.height)
         workExScrollView.isPagingEnabled = true
-        setBorderDecoration()
         
         for index in 0..<MockData.workEx.count {
             let frame = CGRect(x: workExScrollView.frame.size.width * CGFloat(index), y: 0, width: workExScrollView.frame.width, height: workExScrollView.frame.height)
@@ -61,34 +60,45 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func setBorderDecoration() {
-        // corner radius
-        workExScrollView.layer.cornerRadius = 10
-        
-        // shadow
-        workExScrollView.layer.shadowColor = UIColor.black.cgColor
-        workExScrollView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        workExScrollView.layer.shadowOpacity = 0.7
-        workExScrollView.layer.shadowRadius = 4.0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MockData.education.count
     }
     
-    /*
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        MockData.skills.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SkillsCollectionCell", for: indexPath) as! SkillsCollectionViewCell
-        
-        cell.image.image = UIImage(named: MockData.skills[indexPath.row].image)
-        cell.text.text = MockData.skills[indexPath.row].name
-        cell.configureCell()
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EducationCell", for: indexPath) as! EduTableViewCell
+        cell.uniImageView.image = UIImage(named: MockData.education[indexPath.row].image)
+        cell.uniLabel.text = MockData.education[indexPath.row].institution
+        cell.degreeLabel.text = MockData.education[indexPath.row].degree
+        cell.yearsLabel.text = MockData.education[indexPath.row].years
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedEdu = MockData.education[indexPath.row]
+            
+        if let viewController = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+            viewController.selectedItem = selectedEdu
+            present(viewController, animated: true, completion: ({
+                tableView.deselectRow(at: indexPath, animated: true)
+            }))
+        }
+    }
+  
+    /*
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        MockData.education.count
+    }
     
-    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EducationCell", for: indexPath) as! EduTableViewCell
+        
+        cell.uniImageView.image = UIImage(named: MockData.skills[indexPath.row].image)
+        cell.uniLabel.text = MockData.skills[indexPath.row].name
+        //cell.configureCell()
+        return cell
+    }
+    */
+/*
 
     @IBAction func addNewAppnt(_ sender: Any) {
         let alert = UIAlertController(title: "Add New", message: "Add a new appointment", preferredStyle: UIAlertController.Style.alert)
