@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet var cardView: CardView!
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var additionalLabel: UILabel!
@@ -20,6 +21,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupView()
         projectsTableView.delegate = self
         projectsTableView.dataSource = self
+        /*
+        let scrollSize = CGSize(width: view.frame.size.width,
+                                height: view.frame.size.height)
+        mainScrollView.contentSize = scrollSize
+ */
     }
     
     func setupView() {
@@ -66,7 +72,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
-
+    @IBAction func dismissController(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

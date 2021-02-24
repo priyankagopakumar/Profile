@@ -10,10 +10,11 @@ import UIKit
 class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     //@IBOutlet weak var skillsCollectionView: UICollectionView!
-    @IBOutlet weak var workExScrollView: UIScrollView!
-    @IBOutlet weak var workExPageControl: UIPageControl!
+    //@IBOutlet weak var workExScrollView: UIScrollView!
+    //@IBOutlet weak var workExPageControl: UIPageControl!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var educationTableView: UITableView!
+    @IBOutlet weak var workExTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,12 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         MockData.createAllMockData()
         educationTableView.delegate = self
         educationTableView.dataSource = self
-        workExScrollView.delegate = self
-        workExPageControl.numberOfPages = MockData.workEx.count
+        workExTableView.delegate = self
+        workExTableView.dataSource = self
+        //workExScrollView.delegate = self
+        //workExPageControl.numberOfPages = MockData.workEx.count
         setupProfileView()
-        setupWorkExPages()
+        //setupWorkExPages()
 
     }
     
@@ -40,6 +43,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         profileImageView.clipsToBounds = true
     }
     
+    /*
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageNumber = workExScrollView.contentOffset.x / workExScrollView.frame.size.width
         workExPageControl.currentPage = Int(ceil(pageNumber))
@@ -59,28 +63,52 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
             workExScrollView.addSubview(cardView.contentView)            
         }
     }
-    
+    */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MockData.education.count
+        if tableView == educationTableView {
+            return MockData.education.count
+        } else if tableView == workExTableView {
+            return MockData.workEx.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EducationCell", for: indexPath) as! EduTableViewCell
-        cell.uniImageView.image = UIImage(named: MockData.education[indexPath.row].image)
-        cell.uniLabel.text = MockData.education[indexPath.row].institution
-        cell.degreeLabel.text = MockData.education[indexPath.row].degree
-        cell.yearsLabel.text = MockData.education[indexPath.row].years
-        return cell
+        if tableView == educationTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EducationCell", for: indexPath) as! TableViewCell
+            cell.logoImageView.image = UIImage(named: MockData.education[indexPath.row].image)
+            cell.titleLabel.text = MockData.education[indexPath.row].institution
+            cell.subtitleLabel.text = MockData.education[indexPath.row].degree
+            cell.yearsLabel.text = MockData.education[indexPath.row].years
+            return cell
+        } else if tableView == workExTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WorkExCell", for: indexPath) as! TableViewCell
+            cell.logoImageView.image = UIImage(named: MockData.workEx[indexPath.row].image)
+            cell.titleLabel.text = MockData.workEx[indexPath.row].role
+            cell.subtitleLabel.text = MockData.workEx[indexPath.row].company
+            cell.yearsLabel.text = MockData.workEx[indexPath.row].years
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedEdu = MockData.education[indexPath.row]
-            
-        if let viewController = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-            viewController.selectedItem = selectedEdu
-            present(viewController, animated: true, completion: ({
-                tableView.deselectRow(at: indexPath, animated: true)
-            }))
+        if tableView == educationTableView {
+            let selectedEdu = MockData.education[indexPath.row]
+            if let viewController = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+                viewController.selectedItem = selectedEdu
+                present(viewController, animated: true, completion: ({
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }))
+            }
+        } else if tableView == workExTableView {
+            let selectedWork = MockData.workEx[indexPath.row]
+            if let viewController = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+                viewController.selectedItem = selectedWork
+                present(viewController, animated: true, completion: ({
+                    tableView.deselectRow(at: indexPath, animated: true)
+                }))
+            }
         }
     }
   

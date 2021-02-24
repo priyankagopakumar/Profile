@@ -19,36 +19,36 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="413"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="407"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="seh-oT-z4y">
-                    <rect key="frame" x="20" y="74" width="60" height="60"/>
+                    <rect key="frame" x="20" y="54" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="Cok-HN-Hag"/>
                         <constraint firstAttribute="width" constant="60" id="EO1-gV-t6f"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Developer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wV7-eP-HEO">
-                    <rect key="frame" x="92" y="74" width="238" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Software Developer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wV7-eP-HEO">
+                    <rect key="frame" x="92" y="54" width="238" height="20.5"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telstra" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf7-eP-IXW">
-                    <rect key="frame" x="92" y="95" width="238" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Telstra" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf7-eP-IXW">
+                    <rect key="frame" x="92" y="75" width="238" height="18"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 2018 - August 2019" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09f-Vc-iS6">
-                    <rect key="frame" x="92" y="116" width="238" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="January 2018 - August 2019" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09f-Vc-iS6">
+                    <rect key="frame" x="92" y="96" width="238" height="18"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naF-av-2sJ">
-                    <rect key="frame" x="20" y="154" width="310" height="233"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naF-av-2sJ">
+                    <rect key="frame" x="20" y="136" width="310" height="233"/>
                     <string key="text">Developed the backend services (databases, webservers, email notifications, REST APIs) and frontend applications (iOS and web portal) of the company’s customer advocacy application
 Developed a proof of concept to demonstrate to internal and external clients the feasibility of Bluetooth and Wi- Fi-based indoor location tracking in Telstra Labs. Created an iOS, Android and web application using Swift, Java, ReactJS, HTML5 and CSS, and backend services using Python, Node.js, MongoDB and NGINX</string>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -59,11 +59,11 @@ Developed a proof of concept to demonstrate to internal and external clients the
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="naF-av-2sJ" secondAttribute="bottom" constant="26" id="1A9-mZ-D5n"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="naF-av-2sJ" secondAttribute="bottom" constant="10" id="1A9-mZ-D5n"/>
                 <constraint firstItem="wV7-eP-HEO" firstAttribute="leading" secondItem="seh-oT-z4y" secondAttribute="trailing" constant="12" id="1va-bN-DO0"/>
                 <constraint firstAttribute="trailing" secondItem="naF-av-2sJ" secondAttribute="trailing" constant="20" id="9gh-Ze-Qt8"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="wV7-eP-HEO" secondAttribute="trailing" constant="20" id="D5N-d2-2dl"/>
-                <constraint firstItem="seh-oT-z4y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Esf-Ws-39i"/>
+                <constraint firstItem="seh-oT-z4y" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Esf-Ws-39i"/>
                 <constraint firstItem="wV7-eP-HEO" firstAttribute="top" secondItem="seh-oT-z4y" secondAttribute="top" id="H1r-uN-hrI"/>
                 <constraint firstItem="naF-av-2sJ" firstAttribute="top" secondItem="09f-Vc-iS6" secondAttribute="bottom" constant="20" id="PRx-r8-g3R"/>
                 <constraint firstItem="wf7-eP-IXW" firstAttribute="top" secondItem="wV7-eP-HEO" secondAttribute="bottom" constant="0.5" id="VuH-Kp-zl6"/>
@@ -76,7 +76,7 @@ Developed a proof of concept to demonstrate to internal and external clients the
                 <constraint firstItem="seh-oT-z4y" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="yGq-jP-tdB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="500.00000000000006" y="-42.522321428571423"/>
+            <point key="canvasLocation" x="500.00000000000006" y="-44.53125"/>
         </view>
     </objects>
 </document>
