@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
 
     //@IBOutlet weak var skillsCollectionView: UICollectionView!
     //@IBOutlet weak var workExScrollView: UIScrollView!
@@ -15,6 +15,7 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var educationTableView: UITableView!
     @IBOutlet weak var workExTableView: UITableView!
+    @IBOutlet weak var projectsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,8 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
         educationTableView.dataSource = self
         workExTableView.delegate = self
         workExTableView.dataSource = self
+        projectsCollectionView.delegate = self
+        projectsCollectionView.dataSource = self
         //workExScrollView.delegate = self
         //workExPageControl.numberOfPages = MockData.workEx.count
         setupProfileView()
@@ -111,23 +114,29 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
             }
         }
     }
-  
-    /*
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        MockData.education.count
+        return MockData.projects.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EducationCell", for: indexPath) as! EduTableViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectCell", for: indexPath) as! CollectionViewCell
         
-        cell.uniImageView.image = UIImage(named: MockData.skills[indexPath.row].image)
-        cell.uniLabel.text = MockData.skills[indexPath.row].name
-        //cell.configureCell()
+        cell.mainImageView.image = UIImage(named: MockData.projects[indexPath.row].image)
+        cell.titleLabel.text = MockData.projects[indexPath.row].name
+        cell.subtitleLabel.text = MockData.projects[indexPath.row].platform
+        cell.configureCell()
         return cell
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedProject = MockData.projects[indexPath.row]
+        let alert = UIAlertController(title: "Selected", message: "You selected \(selectedProject.name)", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
+                                        alert.dismiss(animated: true, completion: nil)}))
+        self.present(alert, animated: true, completion: nil)
+    }
 /*
-
     @IBAction func addNewAppnt(_ sender: Any) {
         let alert = UIAlertController(title: "Add New", message: "Add a new appointment", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
