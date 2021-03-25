@@ -130,11 +130,17 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let viewController = storyboard?.instantiateViewController(identifier: "CustomDetailViewController") as? CustomDetailViewController {
+            viewController.selectedItem = MockData.projects[indexPath.row]
+            present(viewController, animated: true)
+        }
+        /*
         let selectedProject = MockData.projects[indexPath.row]
         let alert = UIAlertController(title: "Selected", message: "You selected \(selectedProject.name)", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
                                         alert.dismiss(animated: true, completion: nil)}))
         self.present(alert, animated: true, completion: nil)
+ */
     }
 /*
     @IBAction func addNewAppnt(_ sender: Any) {
