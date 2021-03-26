@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import WebKit
+import MessageUI
 
-class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, MFMailComposeViewControllerDelegate {
 
     //@IBOutlet weak var skillsCollectionView: UICollectionView!
     //@IBOutlet weak var workExScrollView: UIScrollView!
@@ -134,23 +136,58 @@ class ViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegat
             viewController.selectedItem = MockData.projects[indexPath.row]
             present(viewController, animated: true)
         }
-        /*
-        let selectedProject = MockData.projects[indexPath.row]
-        let alert = UIAlertController(title: "Selected", message: "You selected \(selectedProject.name)", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
-                                        alert.dismiss(animated: true, completion: nil)}))
-        self.present(alert, animated: true, completion: nil)
- */
     }
-/*
-    @IBAction func addNewAppnt(_ sender: Any) {
-        let alert = UIAlertController(title: "Add New", message: "Add a new appointment", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
-                                        alert.dismiss(animated: true, completion: nil)}))
-        self.present(alert, animated: true, completion: nil)
+    
+    @IBAction func openLinkedInPage(_ sender: Any) {
+        openWebView(url: Constants.Strings.linkedIn)
     }
-*/
+    
+    @IBAction func openGithubPage(_ sender: Any) {
+        openWebView(url: Constants.Strings.github)
+    }
+    
+    func openWebView(url: String) {
+        let webViewController = UIViewController()
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webViewController.view = webView
+        let myURL = URL(string: url)
+        let myRequest = URLRequest(url: myURL!)
+        webView.load(myRequest)
+        present(webViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func emailMe(_ sender: Any) {
+        if !MFMailComposeViewController.canSendMail() {
+            print("Mail services are not available")
+            return
+        }
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+         
+        // Configure the fields of the interface.
+        composeVC.setToRecipients([Constants.Strings.email])
+        composeVC.setSubject("Hello!")
+        composeVC.setMessageBody("Hello from Profile app", isHTML: false)
+         
+        // Present the view controller modally.
+        present(composeVC, animated: true, completion: nil)
+    }
+    
+    private func mailComposeController(controller: MFMailComposeViewController,
+                               didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        // Check the result or perform other tasks.
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
+    }
 
-
+     /*
+     let selectedProject = MockData.projects[indexPath.row]
+     let alert = UIAlertController(title: "Selected", message: "You selected \(selectedProject.name)", preferredStyle: UIAlertController.Style.alert)
+     alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: {(action: UIAlertAction!) in
+                                     alert.dismiss(animated: true, completion: nil)}))
+     self.present(alert, animated: true, completion: nil)
+     */
 }
 
